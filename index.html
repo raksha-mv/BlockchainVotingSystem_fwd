@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain Voting System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-animation"></div>
+
+    <header>
+        <nav class="navbar">
+            <h1 class="logo">Blockchain Voting System</h1>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-btn active" data-page="home">Home</a></li>
+                <li><a href="#register" class="nav-btn" data-page="register">Register</a></li>
+                <li><a href="#vote" class="nav-btn" data-page="vote" id="voteNavBtn" disabled>Vote</a></li>
+                <li><a href="#results" class="nav-btn" data-page="results">Results</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="content-container">
+            <!-- Home Page -->
+            <section id="home" class="page active">
+                <div class="glass-card welcome-card">
+                    <h2>Welcome to the Future of Voting</h2>
+                    <p>This decentralized platform ensures transparency, security, and fairness through blockchain technology.</p>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="icon">🔒</div>
+                            <h3>Secure</h3>
+                            <p>Advanced encryption protects your vote</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="icon">🌐</div>
+                            <h3>Transparent</h3>
+                            <p>Every vote is verifiable on the blockchain</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="icon">⚡</div>
+                            <h3>Immutable</h3>
+                            <p>Votes cannot be altered or deleted</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Register Page -->
+            <section id="register" class="page">
+                <div class="glass-card form-card">
+                    <h2>Voter Registration</h2>
+                    <div id="registrationStatus" class="status-message"></div>
+                    <form id="registerForm">
+                        <div class="form-group">
+                            <label for="voterName">Full Name</label>
+                            <input type="text" id="voterName" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="voterId">Voter ID</label>
+                            <input type="text" id="voterId" placeholder="Enter your voter ID" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="walletAddress">Wallet Address</label>
+                            <input type="text" id="walletAddress" placeholder="Your blockchain wallet address" required>
+                        </div>
+                        <button type="submit" class="btn-primary">Register</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Vote Page -->
+            <section id="vote" class="page">
+                <div id="voteLockedMessage" class="glass-card locked-message">
+                    <h2>⚠️ Voting Locked</h2>
+                    <p>You must register first to participate in voting. Please complete your registration on the <strong>Register</strong> page before casting your vote.</p>
+                    <button class="btn-secondary" onclick="goToRegister()">Go to Register</button>
+                </div>
+                <div id="voteContent" class="glass-card vote-card" style="display:none;">
+                    <h2>Cast Your Vote</h2>
+                    <p class="subtitle">Select your candidate to participate in the election</p>
+                    <div class="voter-info">
+                        <p>Registered as: <strong id="registeredVoterName"></strong></p>
+                    </div>
+                    <form id="voteForm">
+                        <div class="candidates-grid">
+                            <label class="candidate-card">
+                                <input type="radio" name="candidate" value="candidate1" required>
+                                <div class="candidate-content">
+                                    <div class="candidate-avatar">A</div>
+                                    <h3>Candidate A</h3>
+                                    <p>Independent Party</p>
+                                </div>
+                            </label>
+                            <label class="candidate-card">
+                                <input type="radio" name="candidate" value="candidate2" required>
+                                <div class="candidate-content">
+                                    <div class="candidate-avatar">B</div>
+                                    <h3>Candidate B</h3>
+                                    <p>Progressive Alliance</p>
+                                </div>
+                            </label>
+                            <label class="candidate-card">
+                                <input type="radio" name="candidate" value="candidate3" required>
+                                <div class="candidate-content">
+                                    <div class="candidate-avatar">C</div>
+                                    <h3>Candidate C</h3>
+                                    <p>Unity Coalition</p>
+                                </div>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn-primary">Submit Vote</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Results Page -->
+            <section id="results" class="page">
+                <div class="glass-card results-card">
+                    <h2>Election Results</h2>
+                    <p class="subtitle">Live voting statistics powered by blockchain</p>
+                    <div class="results-grid">
+                        <div class="result-item">
+                            <h3>Candidate A</h3>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 45%"></div>
+                            </div>
+                            <p class="vote-count">450 votes (45%)</p>
+                        </div>
+                        <div class="result-item">
+                            <h3>Candidate B</h3>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 35%"></div>
+                            </div>
+                            <p class="vote-count">350 votes (35%)</p>
+                        </div>
+                        <div class="result-item">
+                            <h3>Candidate C</h3>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 20%"></div>
+                            </div>
+                            <p class="vote-count">200 votes (20%)</p>
+                        </div>
+                    </div>
+                    <div class="total-votes">
+                        <p>Total Votes Cast: <strong>1,000</strong></p>
+                        <p>Blockchain Verified: <strong>✓ All votes verified</strong></p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Blockchain Voting System</h3>
+                <p>Empowering democracy through decentralized technology</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#register">Register</a></li>
+                    <li><a href="#vote">Vote</a></li>
+                    <li><a href="#results">Results</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">About Blockchain</a></li>
+                    <li><a href="#">Security</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Blockchain Voting System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
