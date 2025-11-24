@@ -121,6 +121,26 @@ header {
     justify-content: center;
 }
 
+#pollListSection ul, #resultsPollList {
+  list-style:none;
+  padding:0;
+}
+
+#pollListSection li, #resultsPollList li {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:1rem;
+  background:rgba(33,40,54,0.3);
+  padding:0.8rem 1rem;
+  border-radius:13px;
+  box-shadow:0 3px 12px var(--shadow-glass);
+}
+
+#pollListSection button.btn-secondary, #resultsPollList button.btn-secondary {
+  margin-left:1rem;
+}
+
 /* Glassmorphic Card Styles */
 .glass-card {
     background: rgba(33, 40, 54, 0.4);
@@ -265,44 +285,45 @@ header {
     margin-bottom: 2rem;
 }
 
-/* Primary Button */
-.btn-primary {
+/* UNIFIED BUTTON STYLING - ALL BUTTONS USE SAME GLASSMORPHIC GRADIENT */
+.btn-primary,
+.btn-secondary,
+.big-btn {
+    font-family: var(--font-main);
     font-size: 1.13rem;
-    color: #0f1419;
-    background: linear-gradient(87deg, #8b9ef7 10%, #6ee7de 97%);
-    border: none;
-    padding: 1rem 2rem;
-    border-radius: 16px;
-    font-weight: 700;
-    box-shadow: 0 5px 17px rgba(139, 158, 247, 0.3);
-    cursor: pointer;
-    transition: background 0.19s, box-shadow 0.22s, transform 0.15s;
-}
-
-.btn-primary:active, .btn-primary:focus, .btn-primary:hover {
-    background: linear-gradient(90deg, #6ee7de 23%, #f07d9e 84%);
-    color: #0f1419;
-    box-shadow: 0 7px 21px rgba(139, 158, 247, 0.4);
-    transform: translateY(-2px);
-}
-
-/* Secondary Button */
-.btn-secondary {
-    font-size: 1.13rem;
-    color: var(--text-primary);
-    background: rgba(139,158,247,0.2);
-    border: 2px solid #8b9ef7;
-    padding: 0.8rem 1.8rem;
-    border-radius: 12px;
     font-weight: 600;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    padding: 0.82rem 2.2rem;
+    border-radius: 18px;
+    background: linear-gradient(90deg, rgba(139,158,247,0.3) 31%, rgba(110,231,222,0.3) 84%);
+    color: var(--text-primary);
+    border: 1px solid rgba(139,158,247,0.5);
+    box-shadow: 0 3px 16px var(--shadow-glass);
     cursor: pointer;
-    transition: background 0.2s, box-shadow 0.2s;
+    transition: background 0.3s, color 0.19s, box-shadow 0.23s;
+    outline: none;
 }
 
-.btn-secondary:hover, .btn-secondary:focus {
-    background: rgba(139,158,247,0.35);
-    box-shadow: 0 5px 15px rgba(139, 158, 247, 0.3);
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-secondary:hover,
+.btn-secondary:focus,
+.big-btn:hover,
+.big-btn:focus {
+    background: linear-gradient(90deg, rgba(139,158,247,0.4) 31%, rgba(110,231,222,0.4) 84%);
+    color: var(--text-primary);
+    box-shadow: 0 5px 20px var(--shadow-glass);
+    border: 1px solid rgba(139,158,247,0.6);
+}
+
+/* Remove candidate button - small utility button */
+.remove-candidate-btn {
+    background: none;
+    border: none;
+    color: var(--accent-pastel);
+    font-size: 1.18rem;
+    margin-left: 0.6rem;
+    cursor: pointer;
+    vertical-align: middle;
 }
 
 /* Voter Info */
@@ -549,29 +570,15 @@ footer {
     opacity: 0.73;
 }
 
+/* Home option grid */
+.home-option-grid {
+    display: flex;
+    justify-content: center;
+    gap: 2.2rem;
+    margin: 2.2rem 0;
+}
+
 /* Responsive Design */
-@media (max-width: 900px) {
-    .glass-card { width: 96vw; padding: 2rem 0.71rem; }
-    .welcome-card .feature-grid,
-    .results-card .results-grid,
-    .vote-card .candidates-grid {
-        flex-direction: column;
-        gap: 1.39rem;
-    }
-    .candidate-card { width: 100%; }
-    .footer-content { gap: 1.6rem; }
-}
-
-/* Accessibility Enhancements */
-.nav-btn:focus, .btn-primary:focus, .btn-secondary:focus {
-    outline: 3px solid #8b9ef7;
-    outline-offset: 2px;
-}
-input:focus {
-    outline: none;
-}
-/* Mobile Responsiveness Additions for style.css */
-
 @media (max-width: 900px) {
     .glass-card { 
         width: 98vw; 
@@ -649,24 +656,32 @@ input:focus {
     .glass-card h2 { font-size: 1.45rem; }
     .glass-card { padding: 1rem 0.15rem; }
     .footer-content, .footer-section { padding: 0.3rem; }
+    .glass-card, .form-card, .vote-card, .results-card {
+        width: 99vw !important;
+        max-width: 99vw !important;
+        padding: 1rem 0.15rem !important;
+        border-radius: 13px !important;
+        box-sizing: border-box !important;
+        font-size: 1rem !important;
+    }
+    .candidate-card,
+    .result-item {
+        min-width: 0 !important;
+        width: 100% !important;
+        margin-bottom: 0.6rem !important;
+    }
+    .nav-links, .footer-content, .footer-section {
+        padding: 0.12rem !important;
+        gap: 0.5rem !important;
+    }
 }
-@media (max-width: 500px) {
-  .glass-card, .form-card, .vote-card, .results-card {
-    width: 99vw !important;
-    max-width: 99vw !important;
-    padding: 1rem 0.15rem !important;
-    border-radius: 13px !important;
-    box-sizing: border-box !important;
-    font-size: 1rem !important;
-  }
-  .candidate-card,
-  .result-item {
-    min-width: 0 !important;
-    width: 100% !important;
-    margin-bottom: 0.6rem !important;
-  }
-  .nav-links, .footer-content, .footer-section {
-    padding: 0.12rem !important;
-    gap: 0.5rem !important;
-  }
+
+/* Accessibility Enhancements */
+.nav-btn:focus, .btn-primary:focus, .btn-secondary:focus, .big-btn:focus {
+    outline: 3px solid #8b9ef7;
+    outline-offset: 2px;
+}
+
+input:focus {
+    outline: none;
 }
